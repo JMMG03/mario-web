@@ -1,0 +1,58 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import PillarCard from "../components/PillarCard.astro";
+import { profile } from "../data/profile";
+---
+
+<BaseLayout title="Sobre mí | Mario Molina">
+  <main>
+    <section class="about-hero">
+      <div>
+        <p class="kicker">Sobre mí</p>
+
+        <h1 class="page-title">{profile.headline}</h1>
+
+        <p class="page-description">
+          {profile.description}
+        </p>
+
+        <div class="actions">
+          <a href="/contacto" class="btn">Contactar</a>
+          <a href="/apps" class="btn btn-secondary">Ver proyectos</a>
+        </div>
+      </div>
+
+      <div class="identity-card">
+        <span>{profile.location}</span>
+        <strong>{profile.name}</strong>
+        <p>
+          Una marca personal que mezcla tecnología, creatividad musical y
+          bienestar físico.
+        </p>
+      </div>
+    </section>
+
+    <section class="section-header">
+      <p class="kicker">Áreas</p>
+      <h2 class="section-title">Lo que construyo y lo que soy.</h2>
+    </section>
+
+    <section class="pillars-grid">
+      {profile.pillars.map((pillar) => (
+        <PillarCard pillar={pillar} />
+      ))}
+    </section>
+
+    <section class="tech-section">
+      <p class="kicker">Stack</p>
+
+      <h2>Tecnologías y herramientas</h2>
+
+      <div class="tech-cloud">
+        {profile.techStack.map((tech) => (
+          <span>{tech}</span>
+        ))}
+      </div>
+    </section>
+  </main>
+</BaseLayout>

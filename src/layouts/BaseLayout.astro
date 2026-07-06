@@ -1,0 +1,49 @@
+---
+import "../styles/global.css";
+import Navbar from "../components/Navbar.astro";
+import Footer from "../components/Footer.astro";
+import { site } from "../data/site";
+
+const {
+  title = site.title,
+  description = site.description,
+} = Astro.props;
+
+const canonicalUrl = new URL(Astro.url.pathname, site.url);
+---
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="author" content={site.name} />
+    <meta name="theme-color" content="#050505" />
+
+    <link rel="canonical" href={canonicalUrl} />
+    <link rel="icon" href="/mario.svg" type="image/svg+xml" />
+
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:site_name" content={site.name} />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+  </head>
+
+  <body>
+    <div class="page">
+      <div class="container">
+        <Navbar />
+        <slot />
+        <Footer />
+      </div>
+    </div>
+  </body>
+</html>

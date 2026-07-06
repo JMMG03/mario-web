@@ -1,0 +1,38 @@
+---
+import { site } from "../data/site";
+
+const { service } = Astro.props;
+
+const message = encodeURIComponent(
+  `Hola Mario, quiero reservar: ${service.name} (${service.duration} - ${service.price}€).`
+);
+
+const whatsappUrl = `https://wa.me/${site.phone}?text=${message}`;
+---
+
+<article class="service-card">
+  <div class="service-top">
+    <span>{service.category}</span>
+    <strong>{service.price}€</strong>
+  </div>
+
+  <h2>{service.name}</h2>
+
+  <p>{service.description}</p>
+
+  <div class="service-info">
+    <span>{service.duration}</span>
+  </div>
+
+  <div class="badge-row">
+    {service.points.map((point: string) => (
+      <span class="wellness-badge">{point}</span>
+    ))}
+  </div>
+
+  <div class="actions">
+    <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" class="btn wellness-btn">
+      Reservar
+    </a>
+  </div>
+</article>

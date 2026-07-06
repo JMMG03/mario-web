@@ -1,0 +1,27 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import SongCard from "../components/SongCard.astro";
+import { songs } from "../data/songs";
+---
+
+<BaseLayout title="Música | Mario Molina">
+  <main>
+    <section class="section-header">
+      <p class="kicker">Música</p>
+
+      <h1 class="page-title">Canciones en streaming desde mi web.</h1>
+
+      <p class="page-description">
+        Esta sección estará preparada para reproducir mis canciones desde mi
+        propia plataforma. Sin depender visualmente de SoundCloud, Spotify o
+        páginas externas. Todo centralizado bajo mi dominio.
+      </p>
+    </section>
+
+    <section class="music-grid">
+      {songs.map((song) => (
+        <SongCard song={song} />
+      ))}
+    </section>
+  </main>
+</BaseLayout>

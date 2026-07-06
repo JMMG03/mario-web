@@ -1,0 +1,102 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import ServiceCard from "../components/ServiceCard.astro";
+import PackCard from "../components/PackCard.astro";
+import { services, packs } from "../data/services";
+import { site } from "../data/site";
+
+const generalMessage = encodeURIComponent(
+  "Hola Mario, quiero información sobre tus servicios de quiromasaje."
+);
+
+const generalWhatsappUrl = `https://wa.me/${site.phone}?text=${generalMessage}`;
+---
+
+<BaseLayout title="Quiromasaje | Mario Molina">
+  <main>
+    <section class="wellness-hero">
+      <div>
+        <p class="kicker wellness-kicker">Quiromasaje</p>
+
+        <h1 class="page-title">Bienestar físico, descarga muscular y recuperación.</h1>
+
+        <p class="page-description">
+          Servicios de quiromasaje orientados a aliviar tensión, mejorar la
+          sensación corporal y ayudarte a recuperar equilibrio físico.
+        </p>
+
+        <div class="actions">
+          <a href={generalWhatsappUrl} target="_blank" rel="noopener noreferrer" class="btn wellness-btn">
+            Reservar por WhatsApp
+          </a>
+
+          <a href="#servicios" class="btn btn-secondary">
+            Ver servicios
+          </a>
+        </div>
+      </div>
+
+      <div class="wellness-panel">
+        <span>Servicio a domicilio</span>
+        <strong>Tratamiento personalizado</strong>
+        <p>
+          Cada sesión se adapta según la zona, la tensión muscular y el objetivo
+          de la persona.
+        </p>
+      </div>
+    </section>
+
+    <section id="servicios" class="section-header">
+      <p class="kicker wellness-kicker">Servicios</p>
+      <h2 class="section-title">Tarifas principales</h2>
+    </section>
+
+    <section class="services-grid">
+      {services.map((service) => (
+        <ServiceCard service={service} />
+      ))}
+    </section>
+
+    <section class="section-header packs-header">
+      <p class="kicker wellness-kicker">Bonos</p>
+      <h2 class="section-title">Packs recomendados</h2>
+    </section>
+
+    <section class="packs-grid">
+      {packs.map((pack) => (
+        <PackCard pack={pack} />
+      ))}
+    </section>
+
+    <section class="conditions-box">
+      <p class="kicker wellness-kicker">Condiciones</p>
+
+      <h2>Información importante</h2>
+
+      <div class="conditions-grid">
+        <div>
+          <strong>Reserva</strong>
+          <p>
+            La reserva se confirma por WhatsApp. Se recomienda concretar zona,
+            horario y tipo de servicio.
+          </p>
+        </div>
+
+        <div>
+          <strong>Desplazamiento</strong>
+          <p>
+            Puede aplicarse suplemento según distancia o transporte necesario.
+          </p>
+        </div>
+
+        <div>
+          <strong>Marco profesional</strong>
+          <p>
+            Servicios exclusivamente orientados al bienestar físico,
+            relajación y descarga muscular.
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+</BaseLayout>

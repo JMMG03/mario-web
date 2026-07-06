@@ -1,0 +1,36 @@
+---
+const { song } = Astro.props;
+---
+
+<article class="song-card">
+  <div class="song-cover">
+    <div class="vinyl-circle"></div>
+    <span>{song.title}</span>
+  </div>
+
+  <div class="song-content">
+    <div class="song-meta">
+      <span>{song.genre}</span>
+      <span>{song.duration}</span>
+    </div>
+
+    <h2>{song.title}</h2>
+
+    <p>{song.description}</p>
+
+    <div class="song-status">
+      <span>{song.status}</span>
+      <span>{song.bpm} BPM</span>
+    </div>
+
+    <div class="actions">
+      <a href={`/musica/${song.slug}`} class="btn">
+        Ver canción
+      </a>
+
+      <a href={song.sunoUrl} target="_blank" rel="noopener noreferrer" class="btn btn-secondary">
+        Escuchar en Suno
+      </a>
+    </div>
+  </div>
+</article>

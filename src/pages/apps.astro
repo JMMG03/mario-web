@@ -1,0 +1,27 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import AppCard from "../components/AppCard.astro";
+import { apps } from "../data/apps";
+---
+
+<BaseLayout title="Apps | Mario Molina">
+  <main>
+    <section class="section-header">
+      <p class="kicker">Apps y desarrollo</p>
+
+      <h1 class="page-title">Mis aplicaciones y proyectos.</h1>
+
+      <p class="page-description">
+        Aquí iré publicando mis apps Android, proyectos web y herramientas
+        propias. Cada proyecto tendrá explicación técnica, stack usado,
+        capturas, versión y descarga APK.
+      </p>
+    </section>
+
+    <section class="apps-grid">
+      {apps.map((app) => (
+        <AppCard app={app} />
+      ))}
+    </section>
+  </main>
+</BaseLayout>

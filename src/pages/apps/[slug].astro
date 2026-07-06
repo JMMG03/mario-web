@@ -1,0 +1,81 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { apps } from "../../data/apps";
+
+export function getStaticPaths() {
+  return apps.map((app) => ({
+    params: { slug: app.slug },
+    props: { app },
+  }));
+}
+
+const { app } = Astro.props;
+
+const hasApk = Boolean(app.apkUrl && app.apkUrl !== "#");
+const hasGithub = Boolean(app.githubUrl && app.githubUrl !== "#");
+---
+
+<BaseLayout title={`${app.title} | Mario Molina`}>
+  <main>
+    <section class="section-header">
+      <p class="kicker">Proyecto</p>
+
+      <h1 class="page-title">{app.title}</h1>
+
+      <p class="page-description">
+        {app.longDescription}
+      </p>
+    </section>
+
+    <section class="detail-grid">
+      <div class="project-panel">
+        <h2>Información</h2>
+
+        <div class="info-list">
+          <p><strong>Estado:</strong> {app.status}</p>
+          <p><strong>Versión:</strong> {app.version}</p>
+        </div>
+
+        <h3>Tecnologías</h3>
+
+        <div class="badge-row">
+          {app.stack.map((tech: string) => (
+            <span class="badge">{tech}</span>
+          ))}
+        </div>
+
+        <div class="actions detail-actions">
+          {hasApk ? (
+            <a href={app.apkUrl} class="btn">
+              Descargar APK
+            </a>
+          ) : (
+            <span class="btn-disabled">
+              APK próximamente
+            </span>
+          )}
+
+          {hasGithub ? (
+            <a href={app.githubUrl} target="_blank" rel="noopener noreferrer" class="btn btn-secondary">
+              Ver código
+            </a>
+          ) : (
+            <span class="btn-disabled">
+              Código próximamente
+            </span>
+          )}
+
+          <a href="/apps" class="btn btn-secondary">
+            Volver
+          </a>
+        </div>
+      </div>
+
+      <div class="project-preview">
+        <div class="phone-mockup">
+          <span>{app.title}</span>
+        </div>
+      </div>
+    </section>
+  </main>
+</BaseLayout>

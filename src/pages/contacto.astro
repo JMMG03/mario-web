@@ -1,0 +1,40 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import ContactCard from "../components/ContactCard.astro";
+import { contactChannels, socialLinks } from "../data/contact";
+---
+
+<BaseLayout title="Contacto | Mario Molina">
+  <main>
+    <section class="section-header">
+      <p class="kicker">Contacto</p>
+
+      <h1 class="page-title">Hablemos.</h1>
+
+      <p class="page-description">
+        Elige el canal según lo que necesites: desarrollo, quiromasaje, música,
+        colaboraciones o redes.
+      </p>
+    </section>
+
+    <section class="contact-grid">
+      {contactChannels.map((channel) => (
+        <ContactCard channel={channel} />
+      ))}
+    </section>
+
+    <section class="social-section">
+      <p class="kicker">Links</p>
+
+      <h2>Redes y perfiles</h2>
+
+      <div class="social-links">
+        {socialLinks.map((link) => (
+          <a href={link.href} target="_blank" rel="noopener noreferrer">
+            {link.name}
+          </a>
+        ))}
+      </div>
+    </section>
+  </main>
+</BaseLayout>

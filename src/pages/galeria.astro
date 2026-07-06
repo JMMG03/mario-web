@@ -1,0 +1,60 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import GalleryCard from "../components/GalleryCard.astro";
+import { galleryItems, galleryCategories } from "../data/gallery";
+---
+
+<BaseLayout title="Galería | Mario Molina">
+  <main>
+    <section class="section-header">
+      <p class="kicker">Galería</p>
+
+      <h1 class="page-title">Fotos, diseños y contenido visual.</h1>
+
+      <p class="page-description">
+        Espacio para centralizar portadas musicales, capturas de apps, fotos
+        profesionales, mockups, diseños de marca y contenido visual creativo.
+      </p>
+    </section>
+
+    <section class="gallery-filters" aria-label="Filtros de galería">
+      {galleryCategories.map((category) => (
+        <button class="gallery-filter" type="button" data-filter={category}>
+          {category}
+        </button>
+      ))}
+    </section>
+
+    <section class="gallery-grid">
+      {galleryItems.map((item) => (
+        <GalleryCard item={item} />
+      ))}
+    </section>
+  </main>
+
+  <script>
+    const buttons = document.querySelectorAll(".gallery-filter");
+    const cards = document.querySelectorAll(".gallery-card");
+
+    buttons.forEach((button) => {
+      button.addEventListener("click", () => {
+        const filter = button.getAttribute("data-filter");
+
+        buttons.forEach((btn) => btn.classList.remove("active"));
+        button.classList.add("active");
+
+        cards.forEach((card) => {
+          const category = card.getAttribute("data-category");
+
+          if (filter === "Todo" || category === filter) {
+            card.classList.remove("hidden-card");
+          } else {
+            card.classList.add("hidden-card");
+          }
+        });
+      });
+    });
+
+    buttons[0]?.classList.add("active");
+  </script>
+</BaseLayout>

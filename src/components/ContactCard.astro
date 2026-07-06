@@ -1,0 +1,15 @@
+---
+const { channel } = Astro.props;
+---
+
+<article class="contact-card">
+  <span>{channel.tag}</span>
+
+  <h2>{channel.title}</h2>
+
+  <p>{channel.description}</p>
+
+  <a href={channel.href} target="_blank" rel="noopener noreferrer" class="btn">
+    {channel.action}
+  </a>
+</article>

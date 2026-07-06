@@ -1,0 +1,95 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { songs } from "../../data/songs";
+
+export function getStaticPaths() {
+  return songs.map((song) => ({
+    params: { slug: song.slug },
+    props: { song },
+  }));
+}
+
+const { song } = Astro.props;
+
+const hasStreaming = Boolean(song.hlsUrl);
+---
+
+<BaseLayout title={`${song.title} | Música | Mario Molina`}>
+  <main>
+    <section class="song-detail">
+      <div class="song-detail-cover">
+        <div class="vinyl-large"></div>
+        <span>{song.title}</span>
+      </div>
+
+      <div class="song-detail-content">
+        <p class="kicker">Canción</p>
+
+        <h1 class="page-title">{song.title}</h1>
+
+        <p class="page-description">
+          {song.story}
+        </p>
+
+        <div class="music-info-grid">
+          <div>
+            <strong>Género</strong>
+            <span>{song.genre}</span>
+          </div>
+
+          <div>
+            <strong>Duración</strong>
+            <span>{song.duration}</span>
+          </div>
+
+          <div>
+            <strong>BPM</strong>
+            <span>{song.bpm}</span>
+          </div>
+
+          <div>
+            <strong>Estado</strong>
+            <span>{song.status}</span>
+          </div>
+        </div>
+
+        <div class="custom-player">
+          <button class="play-button" type="button" disabled={!hasStreaming}>
+            ▶
+          </button>
+
+          <div class="player-body">
+            <div class="player-top">
+              <span>{song.title}</span>
+              <small>{hasStreaming ? "Streaming disponible" : "Streaming propio próximamente"}</small>
+            </div>
+
+            <div class="progress-line">
+              <span></span>
+            </div>
+          </div>
+        </div>
+
+        <div class="actions">
+          <a href={song.sunoUrl} target="_blank" rel="noopener noreferrer" class="btn">
+            Escuchar en Suno
+          </a>
+
+          <a href="/musica" class="btn btn-secondary">
+            Volver a música
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="lyrics-section">
+      <p class="kicker">Letra</p>
+
+      <div class="lyrics-box">
+        {song.lyrics.map((line: string) => (
+          line === "" ? <br /> : <p>{line}</p>
+        ))}
+      </div>
+    </section>
+  </main>
+</BaseLayout>

@@ -1,0 +1,20 @@
+---
+const { item } = Astro.props;
+---
+
+<article class="gallery-card" data-category={item.category}>
+  <div class="gallery-image">
+    <span>{item.title}</span>
+  </div>
+
+  <div class="gallery-content">
+    <div class="gallery-meta">
+      <span>{item.category}</span>
+      <span>{item.type}</span>
+    </div>
+
+    <h2>{item.title}</h2>
+
+    <p>{item.description}</p>
+  </div>
+</article>

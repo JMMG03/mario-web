@@ -1,0 +1,15 @@
+---
+const { pillar } = Astro.props;
+---
+
+<article class="pillar-card">
+  <h2>{pillar.title}</h2>
+
+  <p>{pillar.description}</p>
+
+  <div class="badge-row">
+    {pillar.tags.map((tag: string) => (
+      <span class="badge">{tag}</span>
+    ))}
+  </div>
+</article>

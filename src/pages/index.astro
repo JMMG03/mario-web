@@ -1,11 +1,50 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+import BaseLayout from "../layouts/BaseLayout.astro";
+import SectionCard from "../components/SectionCard.astro";
 ---
 
-<Layout>
-	<Welcome />
-</Layout>
+<BaseLayout title="Mario Molina | Web Personal">
+  <main>
+    <section class="hero">
+      <p class="kicker">Plataforma personal</p>
+
+      <h1>Desarrollo apps, creo música y trabajo el bienestar físico.</h1>
+
+      <p>
+        Esta es mi web personal: un espacio centralizado para mis proyectos,
+        APKs, canciones en streaming, servicios de quiromasaje, diseños y
+        evolución creativa.
+      </p>
+    </section>
+
+    <section class="grid">
+      <SectionCard
+        href="/apps"
+        number="01"
+        title="Apps"
+        description="Aplicaciones Android, proyectos web, herramientas propias y futuras descargas APK."
+      />
+
+      <SectionCard
+        href="/musica"
+        number="02"
+        title="Música"
+        description="Canciones, demos, letras y streaming propio desde la web."
+      />
+
+      <SectionCard
+        href="/quiromasaje"
+        number="03"
+        title="Quiromasaje"
+        description="Servicios, tarifas, bonos y reservas para bienestar físico."
+      />
+
+      <SectionCard
+        href="/galeria"
+        number="04"
+        title="Galería"
+        description="Fotos, diseños, visuales, portadas y contenido creativo."
+      />
+    </section>
+  </main>
+</BaseLayout>
