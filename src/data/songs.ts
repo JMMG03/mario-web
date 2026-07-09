@@ -20,7 +20,7 @@ export const songs = [
       "808 profundos",
       "hi-hats rápidos",
     ],
-    cover: "/img/music/yeah-yeah.webp",
+    cover: "/music/1music.webp",
     hlsUrl: "",
     sunoUrl: "https://suno.com/song/f3a5130e-a0c6-4cd9-8ad1-e954f7cb56a0",
     lyrics: [
@@ -125,7 +125,7 @@ export const songs = [
       "Canción provocativa y emocional sobre deseo, nervios, caricias, miradas intensas y recuerdos que siguen presentes.",
     mood: ["sensual", "íntimo", "nocturno", "emocional"],
     instruments: ["dembow suave", "bajos profundos", "synths oscuros"],
-    cover: "/img/music/el-sentir.webp",
+    cover: "/music/2Elsentir.webp",
     hlsUrl: "",
     sunoUrl: "https://suno.com/song/2c52e349-725b-478d-a6ee-cad77b36798c",
     lyrics: [
@@ -218,7 +218,7 @@ export const songs = [
       "synths",
       "guitarra eléctrica suave",
     ],
-    cover: "/img/music/buen-recuerdo.webp",
+    cover: "/music/3Buenrecuerdo.webp",
     hlsUrl: "",
     sunoUrl: "https://suno.com/song/42973190-eec2-4e73-b2df-5680f1128701",
     lyrics: [
@@ -301,7 +301,7 @@ export const songs = [
       "piano",
       "guitarra nocturna",
     ],
-    cover: "/img/music/segunda-parte.webp",
+    cover: "/music/4SegundaParte.webp",
     hlsUrl: "",
     sunoUrl: "https://suno.com/song/cf43abef-7ce0-4d22-a872-28710ed532a6",
     lyrics: [
@@ -433,7 +433,7 @@ export const songs = [
       "808 profundo",
       "snare seca",
     ],
-    cover: "/img/music/todo-fue-mentira.webp",
+    cover: "/music/5mentira.webp",
     hlsUrl: "",
     sunoUrl: "https://suno.com/song/4cbc6364-4864-47e5-baa2-978f939cf7b8",
     lyrics: [
@@ -544,7 +544,7 @@ export const songs = [
       "acordes nostálgicos",
       "percusión cálida",
     ],
-    cover: "/img/music/espero-que-seas-feliz.webp",
+    cover: "/music/6Espfelíz.webp",
     hlsUrl: "",
     sunoUrl: "https://suno.com/song/691e8f16-a969-4da1-a294-6f2e0b1044da",
     lyrics: [
@@ -784,7 +784,7 @@ export const songs = [
       "acordes nostálgicos",
       "base urbana latina",
     ],
-    cover: "/img/music/hermano.webp",
+    cover: "/music/7Hermano.webp",
     hlsUrl: "",
     sunoUrl: "https://suno.com/song/191de5a5-3127-412f-b35d-7dec9296acb3",
     lyrics: [
@@ -916,7 +916,7 @@ export const songs = [
       "synth oscuro",
       "piano elegante",
     ],
-    cover: "/img/music/un-color.webp",
+    cover: "/music/8Uncolor.webp",
     hlsUrl: "",
     sunoUrl: "https://suno.com/song/3e6e3fc3-88c7-4a4b-b90c-1845ddec61f3",
     lyrics: [
@@ -1064,7 +1064,7 @@ export const songs = [
       "synth nocturno",
       "piano elegante",
     ],
-    cover: "/img/music/hasta-que-salgas.webp",
+    cover: "/music/9Hastaquesalgas.webp",
     hlsUrl: "",
     sunoUrl: "https://suno.com/song/07c9ef4e-0786-429a-b8d6-20ade6a95191",
     lyrics: [

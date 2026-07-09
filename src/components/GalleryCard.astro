@@ -1,9 +1,12 @@
 ---
+import { site } from "../data/site";
+
 const { item } = Astro.props;
+const imageUrl = `${site.assetsUrl}${item.image}`;
 ---
 
 <article class="gallery-card" data-category={item.category}>
-  <div class="gallery-image">
+  <div class="gallery-image real-image" style={`background-image: url('${imageUrl}')`}>
     <span>{item.title}</span>
   </div>
 

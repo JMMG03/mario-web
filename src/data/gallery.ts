@@ -5,7 +5,7 @@ export const galleryItems = [
     category: "Apps",
     type: "Captura",
     description: "Mockup visual de la app de gastos offline.",
-    image: "/img/gallery/registro-gastos-dashboard.webp",
+    image: "/gallery/registro-gastos-dashboard.webp",
     featured: true,
   },
   {
@@ -14,7 +14,7 @@ export const galleryItems = [
     category: "Apps",
     type: "Mockup",
     description: "Vista conceptual del juego Blackjack con estética casino.",
-    image: "/img/gallery/blackjack-preview.webp",
+    image: "/gallery/blackjack-preview.webp",
     featured: false,
   },
   {
@@ -23,7 +23,7 @@ export const galleryItems = [
     category: "Música",
     type: "Portada",
     description: "Portada conceptual para canción trap urbana.",
-    image: "/img/gallery/tentacion-cover.webp",
+    image: "/gallery/tentacion-cover.webp",
     featured: true,
   },
   {
@@ -32,7 +32,7 @@ export const galleryItems = [
     category: "Música",
     type: "Portada",
     description: "Visual oscuro y emocional para tema melódico.",
-    image: "/img/gallery/todo-fue-mentira-cover.webp",
+    image: "/gallery/todo-fue-mentira-cover.webp",
     featured: true,
   },
   {
@@ -41,7 +41,7 @@ export const galleryItems = [
     category: "Quiromasaje",
     type: "Foto",
     description: "Imagen para transmitir calma, confianza y profesionalidad.",
-    image: "/img/gallery/quiromasaje-ambiente.webp",
+    image: "/gallery/quiromasaje-ambiente.webp",
     featured: false,
   },
   {
@@ -50,7 +50,7 @@ export const galleryItems = [
     category: "Quiromasaje",
     type: "Foto",
     description: "Material, camilla y preparación para sesiones.",
-    image: "/img/gallery/material-quiromasaje.webp",
+    image: "/gallery/material-quiromasaje.webp",
     featured: false,
   }
 ] as const;

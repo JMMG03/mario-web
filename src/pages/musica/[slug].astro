@@ -1,6 +1,7 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import { songs } from "../../data/songs";
+import { site } from "../../data/site";
 
 export function getStaticPaths() {
   return songs.map((song) => ({
@@ -12,12 +13,13 @@ export function getStaticPaths() {
 const { song } = Astro.props;
 
 const hasStreaming = Boolean(song.hlsUrl);
+const coverUrl = `${site.assetsUrl}${song.cover}`;
 ---
 
 <BaseLayout title={`${song.title} | Música | Mario Molina`}>
   <main>
     <section class="song-detail">
-      <div class="song-detail-cover">
+      <div class="song-detail-cover real-image" style={`background-image: url('${coverUrl}')`}>
         <div class="vinyl-large"></div>
         <span>{song.title}</span>
       </div>

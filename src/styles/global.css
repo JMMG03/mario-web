@@ -1346,3 +1346,24 @@ a {
   z-index: 2;
   text-shadow: 0 10px 30px rgba(0, 0, 0, 0.85);
 }
+
+.song-cover.real-image,
+.gallery-image.real-image,
+.song-detail-cover.real-image {
+  background-size: cover;
+  background-position: center;
+}
+
+.song-cover.real-image::before,
+.gallery-image.real-image::before,
+.song-detail-cover.real-image::before {
+  background:
+    linear-gradient(180deg, rgba(0, 0, 0, 0.18), rgba(0, 0, 0, 0.78)),
+    radial-gradient(circle at top, rgba(139, 92, 246, 0.22), transparent 42%);
+}
+
+.song-detail-cover.real-image::before {
+  background:
+    linear-gradient(180deg, rgba(0, 0, 0, 0.12), rgba(0, 0, 0, 0.82)),
+    radial-gradient(circle at center, rgba(139, 92, 246, 0.24), transparent 45%);
+}

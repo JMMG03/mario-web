@@ -1,9 +1,12 @@
 ---
+import { site } from "../data/site";
+
 const { song } = Astro.props;
+const coverUrl = `${site.assetsUrl}${song.cover}`;
 ---
 
 <article class="song-card">
-  <div class="song-cover">
+  <div class="song-cover real-image" style={`background-image: url('${coverUrl}')`}>
     <div class="vinyl-circle"></div>
     <span>{song.title}</span>
   </div>
