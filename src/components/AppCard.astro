@@ -1,11 +1,14 @@
 ---
+import { site } from "../data/site";
+
 const { app } = Astro.props;
 
 const hasApk = Boolean(app.apkUrl && app.apkUrl !== "#");
+const imageUrl = `${site.assetsUrl}${app.image}`;
 ---
 
 <article class="app-card">
-  <div class="app-image">
+  <div class="app-image real-image" style={`background-image: url('${imageUrl}')`}>
     <span>{app.title}</span>
   </div>
 

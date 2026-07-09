@@ -5,6 +5,7 @@ export const site = {
   description:
     "Web personal de Mario Molina: desarrollo de apps, música, quiromasaje, proyectos creativos y contenido propio.",
   url: "https://mariomolina.dev",
+  assetsUrl: "https://assets.mariomolina.dev",
 
   email: "tppl9503@gmail.com",
   phone: "34690904462",

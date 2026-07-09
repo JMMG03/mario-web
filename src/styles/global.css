@@ -1324,3 +1324,25 @@ a {
   opacity: 0.45;
   cursor: not-allowed;
 }
+
+.real-image {
+  position: relative;
+  overflow: hidden;
+  background-size: cover;
+  background-position: center;
+}
+
+.real-image::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(180deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.72)),
+    radial-gradient(circle at top, rgba(34, 211, 238, 0.2), transparent 38%);
+}
+
+.real-image span {
+  position: relative;
+  z-index: 2;
+  text-shadow: 0 10px 30px rgba(0, 0, 0, 0.85);
+}
