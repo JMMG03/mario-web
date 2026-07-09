@@ -9,7 +9,7 @@ export const apps = [
     longDescription:
       "Registro de Gastos Offline es una aplicación Android pensada para gestionar gastos personales sin depender de internet. Usa arquitectura MVVM, base de datos local con Room y una interfaz moderna con Jetpack Compose.",
     stack: ["Kotlin", "Jetpack Compose", "Room", "MVVM", "Material 3"],
-    image: "/img/apps/registro-gastos.webp",
+    image: "/apps/registro-gastos.webp",
     apkUrl: "",
     githubUrl: "",
     featured: true,
