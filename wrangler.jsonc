@@ -1,0 +1,10 @@
+{
+  "name": "mario-web",
+  "compatibility_date": "2026-07-09",
+  "r2_buckets": [
+    {
+      "binding": "MUSIC",
+      "bucket_name": "mario-private-music"
+    }
+  ]
+}

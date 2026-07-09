@@ -1065,7 +1065,7 @@ export const songs = [
       "piano elegante",
     ],
     cover: "/music/9Hastaquesalgas.webp",
-    hlsUrl: "",
+    hlsUrl: "/api/music/hasta-que-salgas/playlist.m3u8",
     sunoUrl: "https://suno.com/song/07c9ef4e-0786-429a-b8d6-20ade6a95191",
     lyrics: [
       "[Intro]",

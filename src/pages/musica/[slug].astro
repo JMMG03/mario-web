@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import MusicPlayer from "../../components/MusicPlayer.astro";
 import { songs } from "../../data/songs";
 import { site } from "../../data/site";
 
@@ -55,22 +56,7 @@ const coverUrl = `${site.assetsUrl}${song.cover}`;
           </div>
         </div>
 
-        <div class="custom-player">
-          <button class="play-button" type="button" disabled={!hasStreaming}>
-            ▶
-          </button>
-
-          <div class="player-body">
-            <div class="player-top">
-              <span>{song.title}</span>
-              <small>{hasStreaming ? "Streaming disponible" : "Streaming propio próximamente"}</small>
-            </div>
-
-            <div class="progress-line">
-              <span></span>
-            </div>
-          </div>
-        </div>
+        <MusicPlayer title={song.title} hlsUrl={song.hlsUrl} />
 
         <div class="actions">
           <a href={song.sunoUrl} target="_blank" rel="noopener noreferrer" class="btn">

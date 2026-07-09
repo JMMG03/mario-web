@@ -1,0 +1,67 @@
+---
+const { title, hlsUrl } = Astro.props;
+const hasStreaming = Boolean(hlsUrl);
+---
+
+<div class="custom-player" data-hls-url={hlsUrl}>
+  <button class="play-button" type="button" disabled={!hasStreaming}>
+    ▶
+  </button>
+
+  <div class="player-body">
+    <div class="player-top">
+      <span>{title}</span>
+      <small>{hasStreaming ? "Streaming disponible" : "Streaming propio próximamente"}</small>
+    </div>
+
+    <div class="progress-line">
+      <span></span>
+    </div>
+  </div>
+
+  <audio preload="metadata"></audio>
+</div>
+
+<script>
+  import Hls from "hls.js";
+
+  const players = document.querySelectorAll(".custom-player");
+
+  players.forEach((player) => {
+    const button = player.querySelector(".play-button");
+    const audio = player.querySelector("audio");
+    const progress = player.querySelector(".progress-line span");
+    const hlsUrl = player.getAttribute("data-hls-url");
+
+    if (!button || !audio || !progress || !hlsUrl) return;
+
+    if (Hls.isSupported()) {
+      const hls = new Hls();
+      hls.loadSource(hlsUrl);
+      hls.attachMedia(audio);
+    } else if (audio.canPlayType("application/vnd.apple.mpegurl")) {
+      audio.src = hlsUrl;
+    }
+
+    button.addEventListener("click", async () => {
+      if (audio.paused) {
+        await audio.play();
+        button.textContent = "❚❚";
+      } else {
+        audio.pause();
+        button.textContent = "▶";
+      }
+    });
+
+    audio.addEventListener("timeupdate", () => {
+      if (!audio.duration) return;
+      const percentage = (audio.currentTime / audio.duration) * 100;
+      progress.style.width = `${percentage}%`;
+    });
+
+    audio.addEventListener("ended", () => {
+      button.textContent = "▶";
+      progress.style.width = "0%";
+    });
+  });
+</script>
