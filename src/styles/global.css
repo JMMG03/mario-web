@@ -1810,7 +1810,6 @@ a {
     radial-gradient(circle at top, rgba(34, 211, 238, 0.18), transparent 40%);
 }
 
-.image-shell > span,
 .image-shell .vinyl-circle,
 .image-shell .song-cover-badges {
   position: relative;
@@ -1890,4 +1889,91 @@ a {
 
 html {
   scroll-behavior: smooth;
+}
+
+.image-shell > span {
+  position: relative;
+  z-index: 2;
+}
+
+.song-cover-title {
+  position: relative;
+  z-index: 2;
+  max-width: 82%;
+  margin-top: auto;
+  color: white;
+  font-size: clamp(26px, 7vw, 42px);
+  line-height: 0.95;
+  letter-spacing: -0.055em;
+  font-weight: 950;
+  text-shadow: 0 12px 34px rgba(0, 0, 0, 0.9);
+}
+
+.song-cover-badges {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  right: 16px;
+  z-index: 3;
+  display: flex;
+  justify-content: flex-start;
+  pointer-events: none;
+}
+
+.streaming-badge,
+.pending-badge {
+  display: inline-flex;
+  align-items: center;
+  width: fit-content;
+  max-width: 100%;
+  border-radius: 999px;
+  padding: 7px 10px;
+  font-size: 10px;
+  line-height: 1;
+  font-weight: 950;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  white-space: nowrap;
+  backdrop-filter: blur(14px);
+}
+
+.streaming-badge {
+  border: 1px solid rgba(34, 211, 238, 0.4);
+  background: rgba(34, 211, 238, 0.18);
+  color: #cffafe;
+}
+
+.pending-badge {
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  background: rgba(255, 255, 255, 0.1);
+  color: #e5e5e5;
+}
+
+.song-cover.image-shell {
+  align-items: flex-end;
+  justify-content: flex-start;
+}
+
+@media (max-width: 620px) {
+  .song-cover {
+    min-height: 220px;
+  }
+
+  .song-cover-title {
+    max-width: 90%;
+    font-size: 34px;
+  }
+
+  .streaming-badge,
+  .pending-badge {
+    font-size: 9px;
+    padding: 7px 9px;
+    letter-spacing: 0.06em;
+  }
+}
+
+@media (max-width: 620px) {
+  .song-cover-title {
+    display: none;
+  }
 }
