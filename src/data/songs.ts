@@ -434,7 +434,7 @@ export const songs = [
       "snare seca",
     ],
     cover: "/music/5mentira.webp",
-    hlsUrl: "",
+    hlsUrl: "/api/music/todo-fue-mentira/playlist.m3u8",
     sunoUrl: "https://suno.com/song/4cbc6364-4864-47e5-baa2-978f939cf7b8",
     lyrics: [
       "[Intro]",
