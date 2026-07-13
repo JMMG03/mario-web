@@ -917,7 +917,7 @@ export const songs = [
       "piano elegante",
     ],
     cover: "/music/8Uncolor.webp",
-    hlsUrl: "",
+    hlsUrl: "/api/music/un-color/playlist.m3u8",
     sunoUrl: "https://suno.com/song/3e6e3fc3-88c7-4a4b-b90c-1845ddec61f3",
     lyrics: [
       "[Intro]",
