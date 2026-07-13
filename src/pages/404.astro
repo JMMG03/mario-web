@@ -1,0 +1,25 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout
+  title="Página no encontrada | Mario Molina"
+  description="La página que buscas no existe o ha cambiado de ubicación."
+>
+  <main class="not-found-page">
+    <p class="kicker">Error 404</p>
+
+    <h1 class="page-title">Esta ruta no existe.</h1>
+
+    <p class="page-description">
+      Puede que el enlace haya cambiado o que la página todavía no esté
+      disponible. Vuelve al inicio o explora mis secciones principales.
+    </p>
+
+    <div class="actions">
+      <a href="/" class="btn">Volver al inicio</a>
+      <a href="/musica" class="btn btn-secondary">Ver música</a>
+      <a href="/apps" class="btn btn-secondary">Ver apps</a>
+    </div>
+  </main>
+</BaseLayout>
