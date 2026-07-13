@@ -443,18 +443,6 @@ a {
   line-height: 1.1;
 }
 
-.vinyl-circle {
-  position: absolute;
-  width: 170px;
-  height: 170px;
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  border-radius: 999px;
-  background:
-    radial-gradient(circle, rgba(255, 255, 255, 0.12) 0 8%, transparent 9%),
-    repeating-radial-gradient(circle, rgba(255, 255, 255, 0.08) 0 1px, transparent 1px 9px),
-    rgba(0, 0, 0, 0.28);
-  opacity: 0.8;
-}
 
 .song-content {
   padding: 24px;
@@ -1896,59 +1884,6 @@ html {
   z-index: 2;
 }
 
-.song-cover-title {
-  position: relative;
-  z-index: 2;
-  max-width: 82%;
-  margin-top: auto;
-  color: white;
-  font-size: clamp(26px, 7vw, 42px);
-  line-height: 0.95;
-  letter-spacing: -0.055em;
-  font-weight: 950;
-  text-shadow: 0 12px 34px rgba(0, 0, 0, 0.9);
-}
-
-.song-cover-badges {
-  position: absolute;
-  top: 16px;
-  left: 16px;
-  right: 16px;
-  z-index: 3;
-  display: flex;
-  justify-content: flex-start;
-  pointer-events: none;
-}
-
-.streaming-badge,
-.pending-badge {
-  display: inline-flex;
-  align-items: center;
-  width: fit-content;
-  max-width: 100%;
-  border-radius: 999px;
-  padding: 7px 10px;
-  font-size: 10px;
-  line-height: 1;
-  font-weight: 950;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  white-space: nowrap;
-  backdrop-filter: blur(14px);
-}
-
-.streaming-badge {
-  border: 1px solid rgba(34, 211, 238, 0.4);
-  background: rgba(34, 211, 238, 0.18);
-  color: #cffafe;
-}
-
-.pending-badge {
-  border: 1px solid rgba(255, 255, 255, 0.18);
-  background: rgba(255, 255, 255, 0.1);
-  color: #e5e5e5;
-}
-
 .song-cover.image-shell {
   align-items: flex-end;
   justify-content: flex-start;
@@ -1975,5 +1910,33 @@ html {
 @media (max-width: 620px) {
   .song-cover-title {
     display: none;
+  }
+}
+
+.clean-cover {
+  min-height: 260px;
+  display: block;
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.clean-cover::before {
+  display: none;
+}
+
+.clean-cover img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.song-card {
+  overflow: hidden;
+}
+
+@media (max-width: 620px) {
+  .clean-cover {
+    min-height: 220px;
   }
 }
