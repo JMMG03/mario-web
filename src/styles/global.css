@@ -1798,12 +1798,6 @@ a {
     radial-gradient(circle at top, rgba(34, 211, 238, 0.18), transparent 40%);
 }
 
-.image-shell .vinyl-circle,
-.image-shell .song-cover-badges {
-  position: relative;
-  z-index: 2;
-}
-
 .song-cover.image-shell::before,
 .gallery-image.image-shell::before {
   background:
