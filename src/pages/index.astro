@@ -1,23 +1,35 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import SectionCard from "../components/SectionCard.astro";
+import SongCard from "../components/SongCard.astro";
+import { songs } from "../data/songs";
+
+const latestSongs = songs.filter((song) => song.hlsUrl).slice(0, 3);
 ---
 
-<BaseLayout title="Mario Molina | Web Personal">
+<BaseLayout
+  title="Mario Molina | Web Personal"
+  description="Web personal de Mario Molina: desarrollo de apps, música en streaming propio, quiromasaje y proyectos creativos."
+>
   <main>
-    <section class="hero">
+    <section class="hero home-hero">
       <p class="kicker">Plataforma personal</p>
 
       <h1>Desarrollo apps, compongo música y trabajo el bienestar físico.</h1>
 
       <p>
-        Esta es mi web personal: un espacio centralizado para mis proyectos,
-        APKs, canciones en streaming, servicios de quiromasaje, diseños y
-        evolución creativa.
+        Una web centralizada para mis proyectos, canciones en streaming propio,
+        servicios de quiromasaje, diseños y evolución creativa.
       </p>
+
+      <div class="actions hero-actions">
+        <a href="/musica" class="btn">Escuchar música</a>
+        <a href="/apps" class="btn btn-secondary">Ver apps</a>
+        <a href="/quiromasaje" class="btn btn-secondary">Quiromasaje</a>
+      </div>
     </section>
 
-    <section class="grid">
+    <section class="grid home-sections">
       <SectionCard
         href="/apps"
         number="01"
@@ -45,6 +57,53 @@ import SectionCard from "../components/SectionCard.astro";
         title="Galería"
         description="Fotos, diseños, visuales, portadas y contenido creativo."
       />
+    </section>
+
+    {latestSongs.length > 0 && (
+      <section class="home-latest">
+        <div class="section-header compact-header">
+          <p class="kicker">Últimos lanzamientos</p>
+
+          <h2 class="section-title">Streaming propio desde mi web.</h2>
+
+          <p class="page-description">
+            Canciones reproducidas desde mi propia infraestructura, sin depender
+            de reproductores externos.
+          </p>
+        </div>
+
+        <section class="music-grid">
+          {latestSongs.map((song) => (
+            <SongCard song={song} />
+          ))}
+        </section>
+
+        <div class="actions centered-actions">
+          <a href="/musica" class="btn">Ver catálogo completo</a>
+        </div>
+      </section>
+    )}
+
+    <section class="home-platform">
+      <div>
+        <p class="kicker">Sistema propio</p>
+
+        <h2>Una web que no solo muestra cosas: las sirve.</h2>
+
+        <p>
+          Esta plataforma está preparada para centralizar música, imágenes,
+          proyectos, servicios y futuras descargas desde mi propio dominio.
+        </p>
+      </div>
+
+      <div class="platform-points">
+        <span>Dominio propio</span>
+        <span>Cloudflare</span>
+        <span>R2 privado</span>
+        <span>Streaming HLS</span>
+        <span>Astro</span>
+        <span>TypeScript</span>
+      </div>
     </section>
   </main>
 </BaseLayout>
