@@ -1418,3 +1418,61 @@ a {
 .player-status {
   text-align: right;
 }
+
+.song-navigation {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+  margin-top: 28px;
+}
+
+.song-nav-card {
+  border: 1px solid var(--border);
+  border-radius: 22px;
+  padding: 18px;
+  background: rgba(255, 255, 255, 0.055);
+  transition:
+    transform 0.2s ease,
+    background 0.2s ease,
+    border 0.2s ease;
+}
+
+.song-nav-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(139, 92, 246, 0.45);
+  background: rgba(139, 92, 246, 0.13);
+}
+
+.song-nav-card small {
+  display: block;
+  margin-bottom: 8px;
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+}
+
+.song-nav-card strong {
+  display: block;
+  color: white;
+  font-size: 17px;
+  line-height: 1.2;
+}
+
+.song-nav-card.disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.song-nav-card.disabled:hover {
+  transform: none;
+  border-color: var(--border);
+  background: rgba(255, 255, 255, 0.055);
+}
+
+@media (max-width: 620px) {
+  .song-navigation {
+    grid-template-columns: 1fr;
+  }
+}

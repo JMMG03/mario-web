@@ -3,6 +3,7 @@ import { site } from "../data/site";
 
 const { song } = Astro.props;
 const coverUrl = `${site.assetsUrl}${song.cover}`;
+const hasStreaming = Boolean(song.hlsUrl);
 ---
 
 <article class="song-card">
@@ -22,17 +23,17 @@ const coverUrl = `${site.assetsUrl}${song.cover}`;
     <p>{song.description}</p>
 
     <div class="song-status">
-      <span>{song.status}</span>
+      <span>{hasStreaming ? "Streaming propio" : song.status}</span>
       <span>{song.bpm} BPM</span>
     </div>
 
     <div class="actions">
       <a href={`/musica/${song.slug}`} class="btn">
-        Ver canción
+        {hasStreaming ? "Escuchar aquí" : "Ver canción"}
       </a>
 
       <a href={song.sunoUrl} target="_blank" rel="noopener noreferrer" class="btn btn-secondary">
-        Escuchar en Suno
+        Suno
       </a>
     </div>
   </div>
