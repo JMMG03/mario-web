@@ -24,7 +24,14 @@ const searchText = [
   data-genre={song.genre.toLowerCase()}
   data-search={searchText}
 >
-  <div class="song-cover real-image" style={`background-image: url('${coverUrl}')`}>
+  <div class="song-cover image-shell">
+    <img
+      src={coverUrl}
+      alt={`Portada de ${song.title}`}
+      loading="lazy"
+      decoding="async"
+    />
+
     <div class="vinyl-circle"></div>
 
     <div class="song-cover-badges">

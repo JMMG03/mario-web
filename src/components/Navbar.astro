@@ -2,12 +2,18 @@
 import { site } from "../data/site";
 ---
 
-<nav class="navbar">
+<nav class="navbar" data-navbar>
   <a href="/" class="logo">
     {site.name}<span>.</span>
   </a>
 
-  <div class="nav-links">
+  <button class="nav-toggle" type="button" aria-label="Abrir menú" data-nav-toggle>
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+
+  <div class="nav-links" data-nav-links>
     <a href="/apps">Apps</a>
     <a href="/musica">Música</a>
     <a href="/quiromasaje">Quiromasaje</a>
@@ -16,3 +22,19 @@ import { site } from "../data/site";
     <a href="/contacto">Contacto</a>
   </div>
 </nav>
+
+<script>
+  const navbar = document.querySelector("[data-navbar]");
+  const toggle = document.querySelector("[data-nav-toggle]");
+  const links = document.querySelectorAll("[data-nav-links] a");
+
+  toggle?.addEventListener("click", () => {
+    navbar?.classList.toggle("nav-open");
+  });
+
+  links.forEach((link) => {
+    link.addEventListener("click", () => {
+      navbar?.classList.remove("nav-open");
+    });
+  });
+</script>
