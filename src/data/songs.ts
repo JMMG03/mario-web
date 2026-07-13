@@ -21,7 +21,7 @@ export const songs = [
       "hi-hats rápidos",
     ],
     cover: "/music/1music.webp",
-    hlsUrl: "",
+    hlsUrl: "/api/music/recuerdas/playlist.m3u8",
     sunoUrl: "https://suno.com/song/f3a5130e-a0c6-4cd9-8ad1-e954f7cb56a0",
     lyrics: [
       "[Intro]",
@@ -126,7 +126,7 @@ export const songs = [
     mood: ["sensual", "íntimo", "nocturno", "emocional"],
     instruments: ["dembow suave", "bajos profundos", "synths oscuros"],
     cover: "/music/2Elsentir.webp",
-    hlsUrl: "",
+    hlsUrl: "/api/music/el-sentir/playlist.m3u8",
     sunoUrl: "https://suno.com/song/2c52e349-725b-478d-a6ee-cad77b36798c",
     lyrics: [
       "[Intro]",
@@ -219,7 +219,7 @@ export const songs = [
       "guitarra eléctrica suave",
     ],
     cover: "/music/3Buenrecuerdo.webp",
-    hlsUrl: "",
+    hlsUrl: "/api/music/buen-recuerdo/playlist.m3u8",
     sunoUrl: "https://suno.com/song/42973190-eec2-4e73-b2df-5680f1128701",
     lyrics: [
       "[Intro]",
@@ -302,7 +302,7 @@ export const songs = [
       "guitarra nocturna",
     ],
     cover: "/music/4SegundaParte.webp",
-    hlsUrl: "",
+    hlsUrl: "/api/music/segunda-parte/playlist.m3u8",
     sunoUrl: "https://suno.com/song/cf43abef-7ce0-4d22-a872-28710ed532a6",
     lyrics: [
       "[Intro]",
@@ -545,7 +545,7 @@ export const songs = [
       "percusión cálida",
     ],
     cover: "/music/6Espfelíz.webp",
-    hlsUrl: "",
+    hlsUrl: "/api/music/espero-que-seas-feliz/playlist.m3u8",
     sunoUrl: "https://suno.com/song/691e8f16-a969-4da1-a294-6f2e0b1044da",
     lyrics: [
       "[Intro]",
@@ -785,7 +785,7 @@ export const songs = [
       "base urbana latina",
     ],
     cover: "/music/7Hermano.webp",
-    hlsUrl: "",
+    hlsUrl: "/api/music/hermano/playlist.m3u8",
     sunoUrl: "https://suno.com/song/191de5a5-3127-412f-b35d-7dec9296acb3",
     lyrics: [
       "[Intro]",

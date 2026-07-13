@@ -2,13 +2,39 @@
 import { site } from "../data/site";
 
 const { song } = Astro.props;
+
 const coverUrl = `${site.assetsUrl}${song.cover}`;
 const hasStreaming = Boolean(song.hlsUrl);
+
+const searchText = [
+  song.title,
+  song.genre,
+  song.status,
+  song.bpm,
+  song.duration,
+  song.description,
+].join(" ").toLowerCase();
 ---
 
-<article class="song-card">
+<article
+  class="song-card"
+  data-song-card
+  data-streaming={hasStreaming ? "true" : "false"}
+  data-featured={song.featured ? "true" : "false"}
+  data-genre={song.genre.toLowerCase()}
+  data-search={searchText}
+>
   <div class="song-cover real-image" style={`background-image: url('${coverUrl}')`}>
     <div class="vinyl-circle"></div>
+
+    <div class="song-cover-badges">
+      {hasStreaming ? (
+        <span class="streaming-badge">Streaming propio</span>
+      ) : (
+        <span class="pending-badge">Próximamente</span>
+      )}
+    </div>
+
     <span>{song.title}</span>
   </div>
 
@@ -23,7 +49,7 @@ const hasStreaming = Boolean(song.hlsUrl);
     <p>{song.description}</p>
 
     <div class="song-status">
-      <span>{hasStreaming ? "Streaming propio" : song.status}</span>
+      <span>{hasStreaming ? "Disponible aquí" : song.status}</span>
       <span>{song.bpm} BPM</span>
     </div>
 

@@ -2,26 +2,160 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import SongCard from "../components/SongCard.astro";
 import { songs } from "../data/songs";
+
+const featuredSong = songs.find((song) => song.hlsUrl) ?? songs[0];
+
+const totalSongs = songs.length;
+const streamingSongs = songs.filter((song) => song.hlsUrl).length;
+const pendingSongs = totalSongs - streamingSongs;
 ---
 
 <BaseLayout title="Música | Mario Molina">
   <main>
-    <section class="section-header">
-      <p class="kicker">Música</p>
+    <section class="music-hero-catalog">
+      <div>
+        <p class="kicker">Música</p>
 
-      <h1 class="page-title">Canciones en streaming desde mi web.</h1>
+        <h1 class="page-title">Canciones en streaming desde mi web.</h1>
 
-      <p class="page-description">
-        Esta sección estará preparada para reproducir mis canciones desde mi
-        propia plataforma. Sin depender visualmente de SoundCloud, Spotify o
-        páginas externas. Todo centralizado bajo mi dominio.
-      </p>
+        <p class="page-description">
+          Catálogo musical propio con canciones, letras, portadas y streaming
+          servido desde mi plataforma.
+        </p>
+      </div>
+
+      <div class="music-stats-panel">
+        <div>
+          <strong>{totalSongs}</strong>
+          <span>Canciones</span>
+        </div>
+
+        <div>
+          <strong>{streamingSongs}</strong>
+          <span>Streaming propio</span>
+        </div>
+
+        <div>
+          <strong>{pendingSongs}</strong>
+          <span>Próximamente</span>
+        </div>
+      </div>
     </section>
 
-    <section class="music-grid">
+    <section class="featured-song-panel">
+      <div class="featured-song-info">
+        <p class="kicker">Destacada</p>
+
+        <h2>{featuredSong.title}</h2>
+
+        <p>{featuredSong.description}</p>
+
+        <div class="actions">
+          <a href={`/musica/${featuredSong.slug}`} class="btn">
+            Escuchar destacada
+          </a>
+
+          <a href={featuredSong.sunoUrl} target="_blank" rel="noopener noreferrer" class="btn btn-secondary">
+            Ver en Suno
+          </a>
+        </div>
+      </div>
+
+      <div class="featured-song-meta">
+        <span>{featuredSong.genre}</span>
+        <strong>{featuredSong.bpm} BPM</strong>
+        <small>{featuredSong.duration}</small>
+      </div>
+    </section>
+
+    <section class="music-toolbar" aria-label="Herramientas de búsqueda musical">
+      <input
+        class="music-search"
+        type="search"
+        placeholder="Buscar por título, género, BPM..."
+        data-music-search
+      />
+
+      <div class="music-filters">
+        <button type="button" class="music-filter active" data-filter="all">
+          Todas
+        </button>
+
+        <button type="button" class="music-filter" data-filter="streaming">
+          Streaming propio
+        </button>
+
+        <button type="button" class="music-filter" data-filter="pending">
+          Próximamente
+        </button>
+
+        <button type="button" class="music-filter" data-filter="featured">
+          Destacadas
+        </button>
+      </div>
+    </section>
+
+    <section class="music-grid" data-music-grid>
       {songs.map((song) => (
         <SongCard song={song} />
       ))}
     </section>
+
+    <p class="empty-results" data-empty-results hidden>
+      No hay canciones que coincidan con esa búsqueda.
+    </p>
   </main>
+
+  <script>
+    const searchInput = document.querySelector("[data-music-search]");
+    const filterButtons = document.querySelectorAll("[data-filter]");
+    const songCards = document.querySelectorAll("[data-song-card]");
+    const emptyResults = document.querySelector("[data-empty-results]");
+
+    let currentFilter = "all";
+
+    const applyFilters = () => {
+      const query = searchInput?.value?.toLowerCase().trim() ?? "";
+      let visibleCount = 0;
+
+      songCards.forEach((card) => {
+        const searchText = card.getAttribute("data-search") ?? "";
+        const hasStreaming = card.getAttribute("data-streaming") === "true";
+        const isFeatured = card.getAttribute("data-featured") === "true";
+
+        const matchesSearch = searchText.includes(query);
+
+        const matchesFilter =
+          currentFilter === "all" ||
+          (currentFilter === "streaming" && hasStreaming) ||
+          (currentFilter === "pending" && !hasStreaming) ||
+          (currentFilter === "featured" && isFeatured);
+
+        const isVisible = matchesSearch && matchesFilter;
+
+        card.classList.toggle("hidden-card", !isVisible);
+
+        if (isVisible) {
+          visibleCount++;
+        }
+      });
+
+      if (emptyResults) {
+        emptyResults.hidden = visibleCount > 0;
+      }
+    };
+
+    searchInput?.addEventListener("input", applyFilters);
+
+    filterButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        currentFilter = button.getAttribute("data-filter") ?? "all";
+
+        filterButtons.forEach((btn) => btn.classList.remove("active"));
+        button.classList.add("active");
+
+        applyFilters();
+      });
+    });
+  </script>
 </BaseLayout>
