@@ -1367,3 +1367,54 @@ a {
     linear-gradient(180deg, rgba(0, 0, 0, 0.12), rgba(0, 0, 0, 0.82)),
     radial-gradient(circle at center, rgba(139, 92, 246, 0.24), transparent 45%);
 }
+
+.progress-line {
+  width: 100%;
+  height: 9px;
+  overflow: hidden;
+  border: 0;
+  border-radius: 999px;
+  padding: 0;
+  background: rgba(255, 255, 255, 0.1);
+  cursor: pointer;
+}
+
+.progress-line:disabled {
+  cursor: not-allowed;
+}
+
+.progress-line span {
+  display: block;
+  width: 0%;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, var(--violet), var(--cyan));
+  transition: width 0.12s linear;
+}
+
+.player-time {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 8px;
+  color: var(--muted);
+}
+
+.player-error {
+  margin: 12px 0 0;
+  color: #fecaca;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.play-button {
+  flex-shrink: 0;
+}
+
+.play-button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.player-status {
+  text-align: right;
+}

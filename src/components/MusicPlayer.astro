@@ -4,19 +4,28 @@ const hasStreaming = Boolean(hlsUrl);
 ---
 
 <div class="custom-player" data-hls-url={hlsUrl}>
-  <button class="play-button" type="button" disabled={!hasStreaming}>
+  <button class="play-button" type="button" disabled={!hasStreaming} aria-label={`Reproducir ${title}`}>
     ▶
   </button>
 
   <div class="player-body">
     <div class="player-top">
       <span>{title}</span>
-      <small>{hasStreaming ? "Streaming disponible" : "Streaming propio próximamente"}</small>
+      <small class="player-status">
+        {hasStreaming ? "Streaming disponible" : "Streaming propio próximamente"}
+      </small>
     </div>
 
-    <div class="progress-line">
+    <button class="progress-line" type="button" disabled={!hasStreaming} aria-label="Cambiar posición">
       <span></span>
+    </button>
+
+    <div class="player-time">
+      <small class="current-time">0:00</small>
+      <small class="duration-time">0:00</small>
     </div>
+
+    <p class="player-error" hidden></p>
   </div>
 
   <audio preload="metadata"></audio>
@@ -27,41 +36,157 @@ const hasStreaming = Boolean(hlsUrl);
 
   const players = document.querySelectorAll(".custom-player");
 
+  const formatTime = (seconds) => {
+    if (!Number.isFinite(seconds)) return "0:00";
+
+    const minutes = Math.floor(seconds / 60);
+    const rest = Math.floor(seconds % 60).toString().padStart(2, "0");
+
+    return `${minutes}:${rest}`;
+  };
+
+  const pauseOtherPlayers = (currentAudio) => {
+    document.querySelectorAll(".custom-player audio").forEach((audio) => {
+      if (audio !== currentAudio) {
+        audio.pause();
+
+        const player = audio.closest(".custom-player");
+        const button = player?.querySelector(".play-button");
+
+        if (button) {
+          button.textContent = "▶";
+        }
+      }
+    });
+  };
+
   players.forEach((player) => {
     const button = player.querySelector(".play-button");
     const audio = player.querySelector("audio");
+    const progressButton = player.querySelector(".progress-line");
     const progress = player.querySelector(".progress-line span");
+    const currentTime = player.querySelector(".current-time");
+    const durationTime = player.querySelector(".duration-time");
+    const status = player.querySelector(".player-status");
+    const errorBox = player.querySelector(".player-error");
     const hlsUrl = player.getAttribute("data-hls-url");
 
-    if (!button || !audio || !progress || !hlsUrl) return;
+    if (!button || !audio || !progressButton || !progress || !currentTime || !durationTime || !status || !errorBox || !hlsUrl) {
+      return;
+    }
+
+    const showError = (message) => {
+      errorBox.textContent = message;
+      errorBox.hidden = false;
+      status.textContent = "Error de reproducción";
+      button.textContent = "▶";
+    };
+
+    const setLoading = () => {
+      status.textContent = "Cargando stream...";
+    };
+
+    const setReady = () => {
+      status.textContent = "Streaming disponible";
+    };
+
+    setLoading();
 
     if (Hls.isSupported()) {
-      const hls = new Hls();
+      const hls = new Hls({
+        enableWorker: true,
+        lowLatencyMode: false,
+      });
+
       hls.loadSource(hlsUrl);
       hls.attachMedia(audio);
+
+      hls.on(Hls.Events.MANIFEST_PARSED, () => {
+        setReady();
+      });
+
+      hls.on(Hls.Events.ERROR, (_event, data) => {
+        console.error("HLS error:", data);
+
+        if (data.fatal) {
+          showError("No se pudo cargar esta canción.");
+        }
+      });
     } else if (audio.canPlayType("application/vnd.apple.mpegurl")) {
       audio.src = hlsUrl;
+      audio.addEventListener("loadedmetadata", setReady);
+    } else {
+      showError("Tu navegador no soporta este tipo de streaming.");
+      button.disabled = true;
+      progressButton.disabled = true;
+      return;
     }
 
     button.addEventListener("click", async () => {
-      if (audio.paused) {
-        await audio.play();
-        button.textContent = "❚❚";
-      } else {
-        audio.pause();
-        button.textContent = "▶";
+      try {
+        if (audio.paused) {
+          pauseOtherPlayers(audio);
+          await audio.play();
+          button.textContent = "❚❚";
+          status.textContent = "Reproduciendo";
+        } else {
+          audio.pause();
+          button.textContent = "▶";
+          status.textContent = "Pausado";
+        }
+      } catch (error) {
+        console.error("No se pudo reproducir:", error);
+        showError("El navegador bloqueó la reproducción. Pulsa de nuevo.");
       }
+    });
+
+    audio.addEventListener("loadedmetadata", () => {
+      durationTime.textContent = formatTime(audio.duration);
+    });
+
+    audio.addEventListener("durationchange", () => {
+      durationTime.textContent = formatTime(audio.duration);
     });
 
     audio.addEventListener("timeupdate", () => {
       if (!audio.duration) return;
+
       const percentage = (audio.currentTime / audio.duration) * 100;
+
       progress.style.width = `${percentage}%`;
+      currentTime.textContent = formatTime(audio.currentTime);
+      durationTime.textContent = formatTime(audio.duration);
+    });
+
+    audio.addEventListener("waiting", () => {
+      status.textContent = "Cargando...";
+    });
+
+    audio.addEventListener("playing", () => {
+      status.textContent = "Reproduciendo";
+    });
+
+    audio.addEventListener("pause", () => {
+      if (!audio.ended) {
+        status.textContent = "Pausado";
+      }
     });
 
     audio.addEventListener("ended", () => {
       button.textContent = "▶";
       progress.style.width = "0%";
+      currentTime.textContent = "0:00";
+      status.textContent = "Finalizada";
+    });
+
+    progressButton.addEventListener("click", (event) => {
+      if (!audio.duration) return;
+
+      const rect = progressButton.getBoundingClientRect();
+      const clickX = event.clientX - rect.left;
+      const percentage = clickX / rect.width;
+
+      audio.currentTime = audio.duration * percentage;
     });
   });
 </script>
