@@ -7,9 +7,15 @@ import { site } from "../data/site";
 const {
   title = site.title,
   description = site.description,
+  image = site.defaultImage,
+  type = "website",
 } = Astro.props;
 
-const canonicalUrl = new URL(Astro.url.pathname, site.url);
+const canonicalUrl = new URL(Astro.url.pathname, site.url).toString();
+
+const imageUrl = image.startsWith("http")
+  ? image
+  : new URL(image, site.url).toString();
 ---
 
 <!doctype html>
@@ -28,13 +34,15 @@ const canonicalUrl = new URL(Astro.url.pathname, site.url);
 
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:type" content="website" />
+    <meta property="og:type" content={type} />
     <meta property="og:url" content={canonicalUrl} />
     <meta property="og:site_name" content={site.name} />
+    <meta property="og:image" content={imageUrl} />
 
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={imageUrl} />
   </head>
 
   <body>

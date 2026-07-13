@@ -10,7 +10,10 @@ const streamingSongs = songs.filter((song) => song.hlsUrl).length;
 const pendingSongs = totalSongs - streamingSongs;
 ---
 
-<BaseLayout title="Música | Mario Molina">
+<BaseLayout
+  title="Música | Mario Molina"
+  description="Catálogo musical de Mario Molina: canciones, letras, portadas y streaming propio desde su web personal."
+>
   <main>
     <section class="music-hero-catalog">
       <div>
